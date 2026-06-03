@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Narayani Market – Fresh Groceries &amp; Daily Essentials</title>
+  <meta name="description" content="Narayani Market – Your trusted neighbourhood provision store." />
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <div class="logo">Narayani<span>Market</span></div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <i class="ti ti-menu-2"></i>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#home"    class="nav-link" th:classappend="${activePage == 'home'}    ? ' active' : ''">Home</a></li>
+        <li><a href="/products" class="nav-link" th:classappend="${activePage == 'products'}? ' active' : ''">Products</a></li>
+        <li><a href="/about"    class="nav-link" th:classappend="${activePage == 'about'}   ? ' active' : ''">About</a></li>
+        <li><a href="/contact"  class="nav-link" th:classappend="${activePage == 'contact'} ? ' active' : ''">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===================== HOME ===================== -->
+  <div th:if="${activePage == 'home'}">
+
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="hero-tag">🌿 Your trusted neighbourhood store</p>
+        <h1>Fresh Groceries,<br><span>Daily Essentials</span></h1>
+        <p class="hero-sub">Everything your family needs — from fresh vegetables and fruits to rice, oil, spices, and more. All under one roof.</p>
+        <div class="hero-btns">
+          <a href="/products" class="btn btn-primary">Shop Now</a>
+          <a href="/contact"  class="btn btn-outline">Find Us</a>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="num">500+</div>
+        <div class="lbl">Products Available</div>
+      </div>
+    </section>
+
+    <div class="stats-bar">
+      <div class="stat-item"><i class="ti ti-clock"></i><div class="stat-text"><strong>Open Daily</strong><span>6:00 AM – 9:00 PM</span></div></div>
+      <div class="stat-item"><i class="ti ti-map-pin"></i><div class="stat-text"><strong>Local Delivery</strong><span>Within 3 km</span></div></div>
+      <div class="stat-item"><i class="ti ti-star"></i><div class="stat-text"><strong>Trusted Since 2005</strong><span>20+ years of service</span></div></div>
+      <div class="stat-item"><i class="ti ti-phone"></i><div class="stat-text"><strong>Call to Order</strong><span>+91 98765 43210</span></div></div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="sec-head">
+          <span class="tag">Shop by Category</span>
+          <h2>What We Offer</h2>
+          <p>Everything from farm-fresh produce to pantry staples</p>
+        </div>
+        <div class="cat-grid">
+          <a href="/products" class="cat-card"><i class="ti ti-plant"></i><div class="cat-name">Vegetables</div><div class="cat-count">50+ varieties</div></a>
+          <a href="/products" class="cat-card"><i class="ti ti-apple"></i><div class="cat-name">Fruits</div><div class="cat-count">30+ varieties</div></a>
+          <a href="/products" class="cat-card"><i class="ti ti-bowl"></i><div class="cat-name">Rice &amp; Grains</div><div class="cat-count">20+ types</div></a>
+          <a href="/products" class="cat-card"><i class="ti ti-droplet"></i><div class="cat-name">Oils &amp; Ghee</div><div class="cat-count">15+ brands</div></a>
+          <a href="/products" class="cat-card"><i class="ti ti-salt"></i><div class="cat-name">Spices</div><div class="cat-count">40+ items</div></a>
+          <a href="/products" class="cat-card"><i class="ti ti-package"></i><div class="cat-name">Packaged Food</div><div class="cat-count">100+ products</div></a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <!-- ===================== /HOME ===================== -->
+
+  <!-- ===================== PRODUCTS ===================== -->
+  <div th:if="${activePage == 'products'}">
+    <section class="section" style="margin-top:64px;" id="products">
+      <div class="container">
+        <div class="sec-head">
+          <span class="tag">Our Products</span>
+          <h2>Popular Items</h2>
+          <p>Fresh stock updated daily — quality you can trust</p>
+        </div>
+        <div class="prod-grid">
+          <div class="prod-card" th:each="product : ${products}">
+            <div class="prod-img">
+              <i class="ti" th:classappend="${product.icon}"></i>
+            </div>
+            <div class="prod-body">
+              <div class="prod-name"  th:text="${product.name}">Product</div>
+              <div class="prod-unit"  th:text="${product.unit}">Unit</div>
+              <div class="prod-footer">
+                <span class="prod-price">₹<span th:text="${product.price}">0</span></span>
+                <button class="add-btn" th:attr="data-id=${product.id}, aria-label='Add ' + ${product.name}">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- ===================== /PRODUCTS ===================== -->
+
+  <!-- ===================== ABOUT ===================== -->
+  <div th:if="${activePage == 'about'}">
+    <section class="section" style="margin-top:64px;" id="about">
+      <div class="container">
+        <div class="about-inner">
+          <div class="about-text">
+            <span class="tag">Our Story</span>
+            <h2>About Narayani Market</h2>
+            <p>Narayani Market has been a pillar of our community for over two decades. We started as a small family shop and have grown into the town's most trusted provision store.</p>
+            <p>We believe everyone deserves access to fresh, quality groceries at fair prices. Every item on our shelves is handpicked for quality — because your family deserves the best.</p>
+            <p class="owner-sign">— The Narayani Family</p>
+          </div>
+          <div class="about-cards">
+            <div class="about-mini"><i class="ti ti-certificate"></i><strong>Est. 2005</strong><span>Serving for 20+ years</span></div>
+            <div class="about-mini"><i class="ti ti-users"></i><strong>Family Run</strong><span>Personal care always</span></div>
+            <div class="about-mini"><i class="ti ti-leaf"></i><strong>Fresh Daily</strong><span>New stock every morning</span></div>
+            <div class="about-mini"><i class="ti ti-heart"></i><strong>Fair Prices</strong><span>Best rates, no compromise</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- ===================== /ABOUT ===================== -->
+
+  <!-- ===================== CONTACT ===================== -->
+  <div th:if="${activePage == 'contact'}">
+    <section class="section section-alt" style="margin-top:64px;" id="contact">
+      <div class="container">
+        <div class="sec-head">
+          <span class="tag">Get in Touch</span>
+          <h2>Contact Us</h2>
+          <p>We're always happy to hear from you</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card"><i class="ti ti-map-pin"></i><h3>Address</h3><p>Narayani Market, Main Road,<br>Town Centre, Tamil Nadu</p></div>
+          <div class="contact-card"><i class="ti ti-phone"></i><h3>Phone</h3><p>+91 98765 43210<br>+91 91234 56789</p></div>
+          <div class="contact-card"><i class="ti ti-clock"></i><h3>Working Hours</h3><p>Mon – Sat: 6:00 AM – 9:00 PM<br>Sunday: 7:00 AM – 1:00 PM</p></div>
+          <div class="contact-card"><i class="ti ti-truck"></i><h3>Home Delivery</h3><p>Free delivery for orders above ₹300 within 3 km radius.</p></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- ===================== /CONTACT ===================== -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>© 2025 Narayani Market. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script th:src="@{/js/main.js}"></script>
+</body>
+</html>
