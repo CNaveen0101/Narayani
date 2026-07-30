@@ -23,6 +23,5 @@ jobs:
         cache: maven
 
     - name: unzip install
-      run: sudo apt-get update /
-           sudo apt install unzip -y
+      run: sudo apt install unzip -y
 
