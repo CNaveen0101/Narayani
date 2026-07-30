@@ -66,13 +66,3 @@ jobs:
 
       - name: package the application to artifact
         run: mvn clean package
-
-  Deploy:
-    runs-on: myrunner
-    needs: test
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Creating Docker image by using Dockerfile
-        run: docker build -t naveen0101/newnarayani:latest .
-
