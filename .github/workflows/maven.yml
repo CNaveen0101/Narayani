@@ -74,5 +74,5 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Creating Docker image by using Dockerfile
-        run: docker build -t --name=naveen0101/newnarayani:latest .
+        run: docker build -t naveen0101/newnarayani:latest .
 
