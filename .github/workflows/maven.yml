@@ -37,9 +37,11 @@ jobs:
   test:
     runs-on: myrunner
     needs: build
-
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+      - uses: stCarolas/setup-maven@v5
 
-    - name: unit test
-      run: mvn test
+      - name: unit test
+        run: mvn test
 
