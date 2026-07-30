@@ -67,12 +67,25 @@ jobs:
       - name: package the application to artifact
         run: mvn clean package
 
+      - name: upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: my-artifact
+          path: /home/ubuntu/actions-runner/_work/Narayani/Narayani/target/narayani-market-1.0.0.jar
+
   Deploy:
     runs-on: myrunner
     needs: test
     steps:
       - uses: actions/checkout@v4
 
+      - name: Downloading artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: my-artifact
+          path: /home/ubuntu/actions-runner/_work/Narayani/Narayani/target/narayani-market-1.0.0.jar
+
       - name: Creating Docker image by using Dockerfile
         run: docker build -t naveen0101/newnarayani:latest .
+
 
