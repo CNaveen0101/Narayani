@@ -1,4 +1,4 @@
-name: mynewpipeline
+name: mypipeline
 
 on:
   push:
@@ -47,7 +47,6 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v8.2.1
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ variables.SONAR_HOST_URL }}
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
 
 
