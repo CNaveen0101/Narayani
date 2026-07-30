@@ -25,3 +25,6 @@ jobs:
     - name: unzip install
       run: sudo apt install unzip -y
 
+    - name: maven install
+      run: sudo apt install maven default-jdk
+
