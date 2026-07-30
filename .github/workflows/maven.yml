@@ -30,6 +30,12 @@ jobs:
       with:
         maven-version: 3.8.2
 
+  test:
+    runs-on: myrunner
+    needs: build
+
+    steps:
+
     - name: unit test
       run: mvn test
 
