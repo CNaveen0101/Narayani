@@ -31,6 +31,9 @@ jobs:
         maven-version: 3.8.2
         cache: maven
 
+    - name: validating maven
+      run: mvn --version
+
   test:
     runs-on: myrunner
     needs: build
