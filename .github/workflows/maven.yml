@@ -63,3 +63,6 @@ jobs:
           output: 'trivy-results.sarif'
           severity: 'CRITICAL'
           skip-setup-trivy: true
+
+      - name: package the application to artifact
+        run: mvn clean package
