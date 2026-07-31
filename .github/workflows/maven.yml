@@ -136,6 +136,7 @@ jobs:
      uses: aquasecurity/trivy-action@v0.36.0
      with:
       image-ref: 'docker.io/${{ vars.DOCKERHUB_USERNAME }}/narayani:${{ github.run_id }}'
+      scan-type: image
       format: 'table'
       ignore-unfixed: true
       vuln-type: 'os,library'
