@@ -98,7 +98,7 @@ jobs:
        name: my-artifact
        path: /home/ubuntu/actions-runner/_work/Narayani/Narayani
 
- Packaging_docker_image:
+ Package_Push_Docker_Image:
    runs-on: myrunner
    needs: Security_scan
 
@@ -108,6 +108,10 @@ jobs:
      with:
        name: my-application-artifact
        path: /home/ubuntu/actions-runner/_work/Narayani/Narayani/target/narayani-market-1.0.0.jar
+
+   - name: Install_Docker
+     run: |
+      apt install docker.io -y
 
    - name: Login to Docker Hub
      uses: docker/login-action@v4
