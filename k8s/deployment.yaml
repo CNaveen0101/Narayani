@@ -6,7 +6,7 @@ metadata:
     app: narayani
 spec:
  replicas: 3
- selectors:
+ selector:
    matchLabels:
      app: narayani
 template:
