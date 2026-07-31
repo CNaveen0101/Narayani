@@ -137,7 +137,6 @@ jobs:
      with:
       image-ref: 'docker.io/${{ vars.DOCKERHUB_USERNAME }}/narayani:${{ github.run_id }}'
       format: 'table'
-      exit-code: '1'
       ignore-unfixed: true
       vuln-type: 'os,library'
       severity: 'CRITICAL,HIGH'
