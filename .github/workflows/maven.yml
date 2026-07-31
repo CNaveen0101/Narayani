@@ -139,6 +139,7 @@ jobs:
       severity: CRITICAL,HIGH
 
  deploy:
+  needs: Package & Push Docker Image
   runs-on: myrunner
   needs: Package_Push_Docker_Image
  
@@ -153,3 +154,13 @@ jobs:
       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       aws-region: ap-south-1
+ 
+  - name: Generate kubeconfig
+    run: |
+         aws eks update-kubeconfig \
+         --region us-east-1 \
+         --name mynarayanicluster
+ 
+  - name: Verify Cluster
+    run: |
+         kubectl get nodes
