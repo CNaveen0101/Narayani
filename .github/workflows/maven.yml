@@ -73,11 +73,12 @@ jobs:
 
  Security_scan:
    runs-on: myrunner
+   needs: codequality
 
    steps:
    - name: code-checkout
      uses: actions/checkout@v4
-     
+
    - name: Manual Trivy Setup
      uses: aquasecurity/setup-trivy@e07451d2e059ed86c2870430ea286b3a9e0bf241
 
@@ -90,3 +91,9 @@ jobs:
         output: 'trivy-results.sarif'
         severity: 'CRITICAL'
         skip-setup-trivy: true
+
+   - name: upload artifact
+     uses: actions/upload-artifact@v7
+     with:
+       name: my-artifact
+       path: /home/ubuntu/actions-runner/_work/Narayani/Narayani
