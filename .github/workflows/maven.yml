@@ -111,6 +111,7 @@ jobs:
 
    - name: Install_Docker
      run: |
+          sudo apt-get update -y
           sudo apt install docker.io -y
 
    - name: Login to Docker Hub
