@@ -163,3 +163,13 @@ jobs:
   - name: Verify Cluster
     run: |
          kubectl get nodes
+
+  - name: Replace Image Tag
+    run: |
+         sed -i "s|image:.*|image: ${{ vars.DOCKERHUB_USERNAME }}/narayani:${{ github.run_id }}|g" deployment.yaml
+ 
+  - name: Deploy
+    run: |
+         kubectl apply -f k8s/
+
+ 
