@@ -54,6 +54,7 @@ jobs:
      with:
        name: my-application-artifact
        path: /home/ubuntu/actions-runner/_work/Narayani/Narayani/target/narayani-market-1.0.0.jar
+       timeout: 60000
 
    - name: Display structure of downloaded files
      run: ls -R /home/ubuntu/actions-runner/_work/Narayani/Narayani/target/narayani-market-1.0.0.jar
