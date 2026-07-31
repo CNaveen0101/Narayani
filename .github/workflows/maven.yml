@@ -166,10 +166,12 @@ jobs:
 
   - name: Replace Image Tag
     run: |
-         sed -i "s|image:.*|image: ${{ vars.DOCKERHUB_USERNAME }}/narayani:${{ github.run_id }}|g" deployment.yaml
+         sed -i "s|image:.*|image: ${{ vars.DOCKERHUB_USERNAME }}/narayani:${{ github.run_id }}|g" k8s/deployment.yaml
  
   - name: Deploy
     run: |
          kubectl apply -f k8s/
 
  
+
+
