@@ -139,7 +139,6 @@ jobs:
       severity: CRITICAL,HIGH
 
  deploy:
-  needs: Package & Push Docker Image
   runs-on: myrunner
   needs: Package_Push_Docker_Image
  
