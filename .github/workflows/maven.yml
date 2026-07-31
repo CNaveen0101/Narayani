@@ -132,10 +132,6 @@ jobs:
    - name: Manual Trivy Setup
      uses: aquasecurity/setup-trivy@master
 
-   - name: Verify image
-     run: |
-          echo "IMAGE=docker.io/${{ vars.DOCKERHUB_USERNAME }}/narayani:${{ github.run_id }}"
-          docker images
 
    - name: Run Trivy vulnerability scanner
      uses: aquasecurity/trivy-action@v0.36.0
