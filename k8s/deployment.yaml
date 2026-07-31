@@ -9,14 +9,14 @@ spec:
  selector:
    matchLabels:
      app: narayani
-template:
- metadata:
-   labels: 
-     app: narayani
- spec:
-  containers:
-  - name: myappcontainer
-    image: naveen0101/narayani:latest
-    imagePullPolicy: Always
-    ports:
-    - containerPort: 8080
+ template:
+   metadata:
+     labels: 
+       app: narayani
+   spec:
+     containers:
+     - name: myappcontainer
+       image: naveen0101/narayani:latest
+       imagePullPolicy: Always
+       ports:
+       - containerPort: 8080
