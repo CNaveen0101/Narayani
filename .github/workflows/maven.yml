@@ -1,4 +1,4 @@
-name: my_pipelinee
+name: my_pipeline
 
 on:
   push:
@@ -109,11 +109,6 @@ jobs:
        name: my-application-artifact
        path: /home/ubuntu/actions-runner/_work/Narayani/Narayani/target/narayani-market-1.0.0.jar
 
-   - name: Install_Docker
-     run: |
-          sudo apt-get update -y
-          sudo apt install docker.io -y
-
    - name: Set up QEMU
      uses: docker/setup-qemu-action@v4
 
@@ -130,8 +125,9 @@ jobs:
    - name: Build and push
      uses: docker/build-push-action@v7
      with:
-       push: true
-       tags: ${{ vars.DOCKERHUB_USERNAME }}/narayani:${{ github.run_id }}
+      context: .
+      push: true
+      tags: ${{ vars.DOCKERHUB_USERNAME }}/narayani:${{ github.run_id }}
 
    - name: Manual Trivy Setup
      uses: aquasecurity/setup-trivy@e07451d2e059ed86c2870430ea286b3a9e0bf241
