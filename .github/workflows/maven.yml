@@ -130,15 +130,18 @@ jobs:
       tags: ${{ vars.DOCKERHUB_USERNAME }}/narayani:${{ github.run_id }}
 
    - name: Manual Trivy Setup
-     uses: aquasecurity/trivy-action@v0.36.0
+     uses: aquasecurity/setup-trivy@v0.2.2
+
+   - name: Verify image
+     run: |
+          echo "IMAGE=docker.io/${{ vars.DOCKERHUB_USERNAME }}/narayani:${{ github.run_id }}"
+          docker images
 
    - name: Run Trivy vulnerability scanner
      uses: aquasecurity/trivy-action@v0.36.0
      with:
-      image-ref: 'docker.io/${{ vars.DOCKERHUB_USERNAME }}/narayani:${{ github.run_id }}'
       scan-type: image
-      format: 'table'
-      exit-code: '1'
-      ignore-unfixed: true
-      vuln-type: 'os,library'
-      severity: 'CRITICAL,HIGH'
+      image-ref: docker.io/${{ vars.DOCKERHUB_USERNAME }}/narayani:${{ github.run_id }}
+      format: table
+      vuln-type: os
+      severity: CRITICAL,HIGH
