@@ -41,3 +41,25 @@ jobs:
      with:
       name: my-application-artifact
       path: /home/ubuntu/actions-runner/_work/Narayani/Narayani/target/narayani-market-1.0.0.jar
+            
+
+
+ codequality:
+   runs-on: myrunner
+   needs: build
+
+   steps:
+   - name: Download Artifact
+     uses: actions/download-artifact@v8
+     with:
+       name: my-application-artifact
+       path: /home/ubuntu/actions-runner/_work/Narayani/Narayani/target/narayani-market-1.0.0.jar
+
+   - name: Display structure of downloaded files
+     run: ls -R /home/ubuntu/actions-runner/_work/Narayani/Narayani/target/narayani-market-1.0.0.jar
+
+   - name: SonarQube Scan
+     uses: SonarSource/sonarqube-scan-action@v8.2.1
+     env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
